@@ -1,0 +1,18 @@
+main{
+  padding: 25px;
+}
+
+label {
+  width:100px;
+  display:block;
+  clear:both;
+}
+
+footer{
+  padding:10px 0px;
+  background-color: #f0f0f0;
+}
+
+footer p{
+  padding-left:25px;
+}
