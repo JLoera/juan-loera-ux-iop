@@ -1,0 +1,30 @@
+$font: sans-serif;
+$color: #000080;
+$bg-color: #f0f0f0;
+
+html, body{
+  font-family: $font;
+  color: $color;
+  padding:0px 25px;
+}
+
+main{
+  padding: 25px;
+  width:900px / 960px * 100%;
+  margin:auto;
+}
+
+label {
+  width:100px;
+  display:block;
+  clear:both;
+}
+
+footer{
+  padding:10px 0px;
+  background-color: $bg-color;
+}
+
+footer p{
+  padding-left:25px;
+}
