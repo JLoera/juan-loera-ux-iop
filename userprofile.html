@@ -3,6 +3,7 @@
 <head>
   <title>User Profile</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="/JS/UserProfileDisplay.js"></script>
 </head>
 
 <body>
@@ -23,9 +24,10 @@
   </header>
 
   <main>
-    <p>Name: Juan Loera</p>
-    <p>Phone: (956)555-5555</p>
-    <p>Email: Juan.Loera@banno.com</p>
+    <span id="PropertiesToggle" onclick="toggleUserProperties()"> - </span>
+    <span id="UserName">Name: Juan Loera</span>
+    <p id="UserPhone">Phone: (956)555-5555</p>
+    <p id="UserEmail">Email: Juan.Loera@banno.com</p>
   </main>
 
   <footer>
