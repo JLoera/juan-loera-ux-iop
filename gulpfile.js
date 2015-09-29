@@ -8,11 +8,6 @@ gulp.task('sass',function(){
   .pipe(gulp.dest('./css'));
 });
 
-gulp.task('sass:watch', function(){
-  gulp.watch('./sass/**/*.{scss,sass}', ['sass']);
-  gulp.watch('./css/**/*.css', ['html']);
-});
-
 gulp.task('connect', function() {
   connect.server({
     root: '',
@@ -26,8 +21,10 @@ gulp.task('html', function () {
     .pipe(connect.reload());
 });
 
-gulp.task('html:watch', function () {
+gulp.task('watch', function () {
   gulp.watch(['./*.html'], ['html']);
+  gulp.watch('./sass/**/*.{scss,sass}', ['sass']);
+  gulp.watch('./css/**/*.css', ['html']);
 });
 
-gulp.task('default', [ 'sass', 'sass:watch', 'connect','html:watch']);
+gulp.task('default', [ 'sass', 'connect', 'watch']);
