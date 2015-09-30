@@ -17,14 +17,14 @@ gulp.task('sass',function(){
 
 gulp.task('connect', function() {
   connect.server({
-    root: '',
+    root: 'src/',
     port:1820,
     livereload: true
   });
 });
 
 gulp.task('html', function () {
-  gulp.src('./src/*.{html,css}')
+  gulp.src('./src/*')
     .pipe(connect.reload());
 });
 
