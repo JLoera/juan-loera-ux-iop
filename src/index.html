@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-  <title>User Profile</title>
-	<script src="../node_modules/angular/angular.js"></script>
-	<script src="/js/module.js"></script>
-  <link rel="stylesheet" type="text/css" href="/sass/style.css">
+  <title>Juan Loera ux-iop</title>
+	<script src="/node_modules/angular/angular.js"></script>
+	<script src="/node_modules/angular-ui-router/build/angular-ui-router.js"></script>
+	<script src="/node_modules/angular-resource/angular-resource.js"></script>
+	<script src="/src/js/module.js"></script>
+	<script src="/src/js/UserProfileDisplay.js"></script>
+  <link rel="stylesheet" type="text/css" href="/src/sass/style.css">
 </head>
 
 <body>
   <nav>
     <ul>
-      <li><a href="/partials/userprofile.html">Profile</a></li>
-      <li><a href="/partials/userslist.html">Users</a></li>
-      <li><a href="/partials/edituser.html">Edit User</a></li>
-      <li><a href="/partials/newuser.html">Sign up</a></li>
+      <li><a ui-sref="userprofile">Profile</a></li>
+      <li><a ui-sref="userslist">Users</a></li>
+      <li><a ui-sref="edituser">Edit User</a></li>
+      <li><a ui-sref="newuser">Sign up</a></li>
     </ul>
   </nav>
 
@@ -25,10 +28,14 @@
   </header>
 
   <main>
-		<span><a title="Display user profile properties" class="HomeLinks" href="/partials/userprofile.html">Profile</a></span>
-		<span><a title="Display a list of all users" class="HomeLinks" href="/partials/userslist.html">Users</a></span>
-		<span><a title="Edit all user properties" class="HomeLinks" href="/partials/edituser.html">Edit User</a></span>
-		<span><a title="Use this form to sign up" class="HomeLinks" href="/partials/newuser.html">Sign up</a></span>
+
+		<a title="Display user profile properties" class="rightPadding" ui-sref="userprofile">User Profile</a>
+		<a title="Display a list of all users" class="rightPadding" ui-sref="userslist">Users List</a>
+		<a title="Edit all user properties" class="rightPadding" ui-sref="edituser">Edit User</a>
+		<a title="Use this form to sign up" class="rightPadding" ui-sref="newuser">Sign up</a>
+
+		<div ui-view></div>
+
   </main>
 
   <footer>
