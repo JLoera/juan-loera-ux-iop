@@ -17,7 +17,7 @@ gulp.task('sass',function(){
 
 gulp.task('connect', function() {
   connect.server({
-    root: '',
+    root: ['src', __dirname],
     port:1820,
     livereload: true
   });
