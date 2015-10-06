@@ -5,20 +5,32 @@
 	<script src="/node_modules/angular/angular.js"></script>
 	<script src="/node_modules/angular-ui-router/build/angular-ui-router.js"></script>
 	<script src="/node_modules/angular-resource/angular-resource.js"></script>
-	<script src="/src/js/module.js"></script>
+  <script src="/src/js/module.js"></script>
+  <script src="/src/js/services/userservice.js"></script>
+  <script src="/src/js/services/updateservice.js"></script>
+  <script src="/src/js/controllers/listcontroller.js"></script>
+  <script src="/src/js/controllers/updatecontroller.js"></script>
+  <script src="/src/js/controllers/navcontroller.js"></script>
+  <script src="/src/js/controllers/createcontroller.js"></script>
 	<script src="/src/js/UserProfileDisplay.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/src/sass/style.css">
 </head>
 
 <body>
-  <nav>
-    <ul>
-      <li><a ui-sref="userprofile">Profile</a></li>
-      <li><a ui-sref="userslist">Users</a></li>
-      <li><a ui-sref="edituser">Edit User</a></li>
-      <li><a ui-sref="newuser">Sign up</a></li>
-    </ul>
-  </nav>
+  <nav class="navbar navbar-default" ng-controller="NavController">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Onboarding</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li ng-class="{ active: isActive('/')}"><a ui-sref="userslist">Users</a></li>
+        <li ng-class="{ active: isActive('/newuser')}"><a ui-sref="newuser">Sign up</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
   <header>
     <hgroup>
@@ -29,9 +41,7 @@
 
   <main>
 
-		<a title="Display user profile properties" class="rightPadding" ui-sref="userprofile">User Profile</a>
 		<a title="Display a list of all users" class="rightPadding" ui-sref="userslist">Users List</a>
-		<a title="Edit all user properties" class="rightPadding" ui-sref="edituser">Edit User</a>
 		<a title="Use this form to sign up" class="rightPadding" ui-sref="newuser">Sign up</a>
 
 		<div ui-view></div>

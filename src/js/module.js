@@ -13,12 +13,10 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 		url: '/userprofile',
 		templateUrl: 'partials/userprofile.html'
 	})
-	.state('userprofile.prop', {
-		url: '/prop',
-		templateUrl: 'partials/userprofile.prop.html',
-		controller: function($scope) {
-			$scope.profileInfo = {firstName: 'Juan', lastName: 'Loera', email: 'Juan.Loera@banno.com', phone: '(956)555-5555'};
-		}
+	.state('userprofile.list', {
+		url: '/list',
+		templateUrl: 'partials/userprofile.list.html',
+		controller: 'ProfileController'
 	})
 
 	.state('userslist', {
@@ -28,36 +26,26 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	.state('userslist.list', {
 		url: '/list',
 		templateUrl: 'partials/userslist.list.html',
-		controller: function($scope) {
-			$scope.users = [
-				{firstName: 'Juan', lastName: 'Loera', email: 'Juan.Loera@banno.com', phone: '(956)555-5555'},
-				{firstName: 'Chad', lastName: 'Killingsworth', email: 'Chad.Killingsworth@banno.com', phone: '(956)555-5555'},
-				{firstName: 'Kean', lastName: 'Drake', email: 'Kean.Drake@banno.com', phone: '(956)555-5555'}
-			];
-		}
+		controller: 'ListController'
 	})
 
 	.state('edituser', {
 		url: '/edituser',
 		templateUrl: 'partials/edituser.html'
 	})
-	.state('edituser.prop', {
-		url: '/prop',
-		templateUrl: 'partials/edituser.prop.html',
-		controller: function($scope) {
-			$scope.profileInfo = {firstName: 'Kean', lastName: 'Drake', email: 'Kean.Drake@banno.com', phone: '(956)555-5555'};
-		}
+	.state('edituser.list', {
+		url: '/list/:userId',
+		templateUrl: 'partials/edituser.list.html',
+		controller: 'UpdateController'
 	})
 
 	.state('newuser', {
 		url: '/newuser',
 		templateUrl: 'partials/newuser.html'
 	})
-	.state('newuser.prop', {
-		url: '/prop',
-		templateUrl: 'partials/newuser.prop.html',
-		controller: function($scope) {
-			$scope.profileInfo = {firstName: '', lastName: '', email: '', phone: ''};
-		}
+	.state('newuser.list', {
+		url: '/list',
+		templateUrl: 'partials/newuser.list.html',
+		controller: 'CreateController'
 	});
 });

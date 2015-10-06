@@ -1,6 +1,7 @@
 $font: sans-serif;
 $color: #000080;
 $bg-color: #f0f0f0;
+$tBorder: 1px solid black;
 
 html, body{
   font-family: $font;
@@ -20,6 +21,14 @@ main{
 
 .topPadding{
   padding-top: 25px;
+}
+
+.emailPadding{
+  padding-top:10px;
+}
+
+.rightFloat{
+  float:right;
 }
 
 label {

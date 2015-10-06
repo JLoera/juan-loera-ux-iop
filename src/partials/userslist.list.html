@@ -1,3 +1,19 @@
-<ul>
-  <li ng-repeat="user in users"><a href="#">{{ user.firstName }} {{user.lastName}}</a></li>
-</ul>
+<table class="table">
+  <tr ng-repeat="user in users">
+    <td>
+      {{user.firstName}} {{user.lastName}}
+      <button type="button" class="rightFloat" ng-click="edit(user._id);">Edit</button>
+      <button type="button" class="rightFloat" ng-click="showDetails = ! showDetails">View</button>
+
+
+         <div class="emailPadding" ng-show="showDetails">
+            <p>
+              Email: {{user.email}}
+            </p>
+            <p>
+              Phone: {{user.phone}}
+            </p>
+          </div>
+    </td>
+  </tr>
+</table>
