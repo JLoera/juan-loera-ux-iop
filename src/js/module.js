@@ -5,47 +5,35 @@ var myApp = angular.module('myApp', ['ui.router','ngResource']);
 myApp.config(function($stateProvider, $urlRouterProvider) {
   //
   // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise('/userprofile');
+  $urlRouterProvider.otherwise('/userslist');
   //
   // Now set up the states
   $stateProvider
-	.state('userprofile', {
-		url: '/userprofile',
-		templateUrl: 'partials/userprofile.html'
-	})
-	.state('userprofile.list', {
-		url: '/list',
-		templateUrl: 'partials/userprofile.list.html',
-		controller: 'ProfileController'
-	})
-
 	.state('userslist', {
 		url: '/userslist',
 		templateUrl: 'partials/userslist.html'
 	})
 	.state('userslist.list', {
 		url: '/list',
-		templateUrl: 'partials/userslist.list.html',
+		templateUrl: 'partials/list.html',
 		controller: 'ListController'
 	})
 
-	.state('edituser', {
-		url: '/edituser',
-		templateUrl: 'partials/edituser.html'
+  .state('userslist.profile', {
+		url: '/profile/:userId',
+		templateUrl: 'partials/profile.html',
+		controller: 'ProfileController'
 	})
-	.state('edituser.list', {
-		url: '/list/:userId',
-		templateUrl: 'partials/edituser.list.html',
+
+	.state('userslist.edit', {
+		url: '/edit/:userId',
+		templateUrl: 'partials/edit.html',
 		controller: 'UpdateController'
 	})
 
-	.state('newuser', {
-		url: '/newuser',
-		templateUrl: 'partials/newuser.html'
-	})
-	.state('newuser.list', {
-		url: '/list',
-		templateUrl: 'partials/newuser.list.html',
+	.state('userslist.new', {
+		url: '/new',
+		templateUrl: 'partials/new.html',
 		controller: 'CreateController'
 	});
 });

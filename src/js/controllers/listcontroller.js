@@ -6,7 +6,12 @@ myApp.controller('ListController', function($scope, $http, $state, UserService){
 
 	$scope.edit = function(id){
 		//alert('asdf'+id);
-		$state.go('edituser.list', {userId: id});
+		$state.go('userslist.edit', {userId: id});
+	};
+
+  $scope.disp = function(id){
+		//alert('asdf'+id);
+		$state.go('userslist.profile', {userId: id});
 	};
 
 });

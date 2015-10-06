@@ -1,0 +1,13 @@
+<h1>User Profile</h1>
+<hr/>
+<div class="topPadding">
+	<div ng-controller="ProfileController">
+		<span class="rightFloat">
+			<a ui-sref="userslist.edit({userId: user.uId})">Edit</a>
+			<a href="#" ng-click="del(user.uId);">Delete</a>
+		</span>
+		<p id="UserName">Name: {{user.firstName }} {{user.lastName}}</p>
+		<p id="UserPhone">Phone: {{user.phone}}</p>
+		<p id="UserEmail">Email: {{user.email}}</p>
+	</div>
+</div>
