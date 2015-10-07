@@ -1,21 +1,23 @@
-<h1>Edit User</h1>
-<hr/>
-<div class="topPadding">
-	<div ng-controller="UpdateController">
-		<form ng-submit="submitEdit()" ng-controller="CreateController">
-			<label>First Name:
-				<input type="text" ng-model="user.firstName" required></input>
-			</label>
-			<label>Last Name:
-				<input type="text" ng-model="user.lastName" required></input>
-			</label>
-			<label>Phone:
-				<input type="text" ng-model="user.phone" required></input>
-			</label>
-			<label>Email:
-				<input type="text" ng-model="user.email" disabled></input>
-			</label>
-			<input type="submit" value="Submit">
-		</form>
+<div>
+	<h1>Edit User</h1>
+	<hr/>
+	<div class="topPadding">
+		<div ng-controller="UpdateController">
+			<form ng-submit="submitEdit()" ng-controller="CreateController">
+				<label>First Name:
+					<input type="text" ng-model="user.firstName" required></input>
+				</label>
+				<label>Last Name:
+					<input type="text" ng-model="user.lastName" required></input>
+				</label>
+				<label>Phone:
+					<input type="text" ng-model="user.phone" required></input>
+				</label>
+				<label>Email:
+					<input type="text" ng-model="user.email" disabled></input>
+				</label>
+				<input type="submit" value="Submit">
+			</form>
+		</div>
 	</div>
 </div>

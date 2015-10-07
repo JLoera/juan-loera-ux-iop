@@ -15,25 +15,25 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
 	})
 	.state('userslist.list', {
 		url: '/list',
-		templateUrl: 'partials/list.html',
+		template: '<user-list></user-list>',
 		controller: 'ListController'
 	})
 
   .state('userslist.profile', {
 		url: '/profile/:userId',
-		templateUrl: 'partials/profile.html',
+		template: '<user-profile></user-profile>',
 		controller: 'ProfileController'
 	})
 
 	.state('userslist.edit', {
 		url: '/edit/:userId',
-		templateUrl: 'partials/edit.html',
+		template: '<user-edit></user-edit>',
 		controller: 'UpdateController'
 	})
 
 	.state('userslist.new', {
 		url: '/new',
-		templateUrl: 'partials/new.html',
+		template: '<user-new></user-new>',
 		controller: 'CreateController'
 	});
 });
