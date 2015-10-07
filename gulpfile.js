@@ -17,7 +17,7 @@ gulp.task('sass',function(){
 
 gulp.task('connect', function() {
   connect.server({
-    root: 'src/',
+    root: ['src', __dirname],
     port:1820,
     livereload: true
   });
@@ -33,6 +33,7 @@ gulp.task('watch', function () {
   gulp.watch('./src/sass/**/*.{scss,sass}', ['sass']);
   gulp.watch('./src/sass/**/*.css', ['html']);
   gulp.watch(['./src/js/*.js'], ['js-hint']);
+  gulp.watch(['./src/js/*.js'], ['html']);
 });
 
 gulp.task('default', ['connect', 'sass', 'watch', 'js-hint']);

@@ -1,6 +1,7 @@
 $font: sans-serif;
 $color: #000080;
 $bg-color: #f0f0f0;
+$tBorder: 1px solid black;
 
 html, body{
   font-family: $font;
@@ -14,8 +15,23 @@ main{
   margin:auto;
 }
 
-.HomeLinks{
-  padding:0px 25px;
+.leftPadding{
+  padding-left:25px;
+}
+.rightPadding{
+  padding-right:25px;
+}
+
+.topPadding{
+  padding-top: 25px;
+}
+
+.emailPadding{
+  padding-top:10px;
+}
+
+.rightFloat{
+  float:right;
 }
 
 label {

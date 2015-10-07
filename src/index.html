@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-  <title>User Profile</title>
-	<script src="../node_modules/angular/angular.js"></script>
-	<script src="/js/module.js"></script>
-  <link rel="stylesheet" type="text/css" href="/sass/style.css">
+  <title>Juan Loera ux-iop</title>
+	<script src="/node_modules/angular/angular.js"></script>
+	<script src="/node_modules/angular-ui-router/build/angular-ui-router.js"></script>
+	<script src="/node_modules/angular-resource/angular-resource.js"></script>
+
+  <script src="/src/js/module.js"></script>
+
+  <script src="/src/js/services/userservice.js"></script>
+
+  <script src="/src/js/controllers/listcontroller.js"></script>
+  <script src="/src/js/controllers/updatecontroller.js"></script>
+  <script src="/src/js/controllers/profilecontroller.js"></script>
+  <script src="/src/js/controllers/navcontroller.js"></script>
+  <script src="/src/js/controllers/createcontroller.js"></script>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/src/sass/style.css">
 </head>
 
 <body>
-  <nav>
-    <ul>
-      <li><a href="/partials/userprofile.html">Profile</a></li>
-      <li><a href="/partials/userslist.html">Users</a></li>
-      <li><a href="/partials/edituser.html">Edit User</a></li>
-      <li><a href="/partials/newuser.html">Sign up</a></li>
-    </ul>
-  </nav>
+  <nav class="navbar navbar-default" ng-controller="NavController">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="userslist">Onboarding</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li ng-class="{ active: isActive('/')}"><a ui-sref="userslist">Users</a></li>
+        <li ng-class="{ active: isActive('/userslist/new')}"><a ui-sref="userslist.new">Sign up</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
   <header>
     <hgroup>
@@ -25,10 +43,9 @@
   </header>
 
   <main>
-		<span><a title="Display user profile properties" class="HomeLinks" href="/partials/userprofile.html">Profile</a></span>
-		<span><a title="Display a list of all users" class="HomeLinks" href="/partials/userslist.html">Users</a></span>
-		<span><a title="Edit all user properties" class="HomeLinks" href="/partials/edituser.html">Edit User</a></span>
-		<span><a title="Use this form to sign up" class="HomeLinks" href="/partials/newuser.html">Sign up</a></span>
+
+		<div ui-view></div>
+
   </main>
 
   <footer>
