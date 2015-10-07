@@ -14,27 +14,18 @@ myApp.controller('UpdateController', function($scope, $http, $stateParams, $stat
 
   }, function(error) {
     console.log(error);
-  }).finally(function(){
-    //this is only needed if you need to do some clean up
-    //work with at the end of the $promise
   });
 
   $scope.submitEdit = function(){
 
     UserService.updateUser({
-      user: $stateParams.userId},{
-			firstName: $scope.user.firstName,
-			lastName: $scope.user.lastName,
-			phone: $scope.user.phone,
-      email: $scope.user.email
-		}).then(function(result){
+      user: $stateParams.userId},
+      $scope.user
+    ).then(function(result){
       alert('Success');
       $state.go('userslist.list');
     }, function(error) {
       console.log(error);
-    }).finally(function(){
-      //this is only needed if you need to do some clean up
-      //work with at the end of the $promise
     });
 
 	};

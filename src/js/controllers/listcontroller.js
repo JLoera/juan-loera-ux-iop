@@ -7,9 +7,6 @@ myApp.controller('ListController', function($scope, $http, $state, UserService){
     $scope.users = result;
   }, function(error) {
     console.log(error);
-  }).finally(function(){
-    //this is only needed if you need to do some clean up
-    //work with at the end of the $promise
   });
 
 	$scope.edit = function(id){

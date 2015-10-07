@@ -14,9 +14,6 @@ myApp.controller('ProfileController', function($scope, $http, $stateParams, $sta
 
   }, function(error) {
     console.log(error);
-  }).finally(function(){
-    //this is only needed if you need to do some clean up
-    //work with at the end of the $promise
   });
 
 	$scope.del = function(id){
@@ -28,9 +25,6 @@ myApp.controller('ProfileController', function($scope, $http, $stateParams, $sta
       $state.go('userslist.list');
     }, function(error) {
       console.log(error);
-    }).finally(function(){
-      //this is only needed if you need to do some clean up
-      //work with at the end of the $promise
     });
 	};
 
