@@ -3,7 +3,7 @@
 <div class="topPadding">
 	<div ng-controller="ProfileController">
 		<span class="rightFloat">
-			<a ui-sref="userslist.edit({userId: user.uId})">Edit</a>
+			<a ui-sref="userslist.edit({userId: user._id})">Edit</a>
 			<a href="#" ng-click="del(user.uId);">Delete</a>
 		</span>
 		<p id="UserName">Name: {{user.firstName }} {{user.lastName}}</p>

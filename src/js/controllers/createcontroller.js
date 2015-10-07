@@ -3,19 +3,21 @@
 myApp.controller('CreateController', function($scope, $http, $state, UserService){
 
   $scope.submit = function(){
-		UserService.save({
+
+    UserService.addUser({
 			firstName: $scope.user.firstName,
 			lastName: $scope.user.lastName,
-			email: $scope.user.email,
-			phone: $scope.user.phone
-		},function(data) {
-        // success
-        alert('Success');
-        $state.go('userslist.list');
-     }, function(e) {
-        // failure
-        alert('Error');
-     });
+			phone: $scope.user.phone,
+      email: $scope.user.email
+		}).then(function(result){
+      $state.go('userslist.list');
+    }, function(error) {
+      console.log(error);
+    }).finally(function(){
+      //this is only needed if you need to do some clean up
+      //work with at the end of the $promise
+    });
+    
 	};
 
 });
