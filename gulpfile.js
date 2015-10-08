@@ -6,27 +6,32 @@ var clean = require('gulp-clean');
 var templateCache = require('gulp-angular-templatecache');
 var concat = require('gulp-concat');
 
-gulp.task('copy', ['clean'], function(){
+gulp.task('copy-index', ['clean'], function(){
   return gulp.src('./src/index.html')
     .pipe(gulp.dest('./dist/'))
 });
 
-gulp.task('scripts',['copy'], function() {
+gulp.task('copy-bootstrap', ['copy-index'], function(){
+  return gulp.src('./src/sass/bootstrap.css')
+    .pipe(gulp.dest('./dist/css/'))
+});
+
+gulp.task('scripts',['copy-bootstrap'], function() {
   return gulp.src([
     './node_modules/angular/angular.js',
     './node_modules/angular-resource/angular-resource.js',
     './node_modules/angular-ui-router/build/angular-ui-router.js',
-    './src/js/**/*.js'
+    './src/js/**/*.js',
+    './temp/templates.js'
   ])
     .pipe(concat('app.js'))
     .pipe(gulp.dest('./dist/js/'));
 });
 
-gulp.task('templ-cache',['scripts'], function () {
-  var TEMPLATE_HEADER = 'myApp.run([\'$templateCache\', function($templateCache) {';
-  return gulp.src('./src/partials/**/*.html')
-    .pipe(templateCache())
-    .pipe(gulp.dest('./dist/temp/'));
+gulp.task('templ-cache', function () {
+  return gulp.src('./src/partials/*.html')
+    .pipe(templateCache('templates.js', {templateHeader: 'myApp.run([\'$templateCache\', function($templateCache) {'}))
+    .pipe(gulp.dest('./temp'));
 });
 
 gulp.task('clean', function () {
@@ -35,7 +40,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('js-hint', function(){
-  return gulp.src('./src/js/*.js')
+  return gulp.src('./src/js/**/*.js')
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'));
 });
@@ -54,17 +59,13 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('html', function () {
+gulp.task('html',['scripts'], function () {
   gulp.src('./dist/*')
     .pipe(connect.reload());
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./src/*.html'], ['html']);
-  gulp.watch('./src/sass/**/*.{scss,sass}', ['sass']);
-  gulp.watch('./src/sass/**/*.css', ['html']);
-  gulp.watch(['./src/js/*.js'], ['js-hint']);
-  gulp.watch(['./src/js/*.js'], ['html']);
+  gulp.watch(['./src/**/*'], ['clean','copy-index','sass','js-hint','copy-bootstrap','scripts','templ-cache','html']);
 });
 
-gulp.task('default', ['connect', 'sass', 'watch', 'js-hint','clean','copy', 'scripts', 'templ-cache']);
+gulp.task('default', ['connect', 'sass', 'watch', 'js-hint','clean','copy-index', 'copy-bootstrap', 'scripts', 'templ-cache']);

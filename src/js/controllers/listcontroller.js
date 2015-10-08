@@ -9,11 +9,11 @@ myApp.controller('ListController', function($scope, $http, $state, UserService){
   });
 
 	$scope.edit = function(id){
-		$state.go('userslist.edit', {userId: id});
+		$state.go('edit', {userId: id});
 	};
 
   $scope.disp = function(id){
-		$state.go('userslist.profile', {userId: id});
+		$state.go('profile', {userId: id});
 	};
 
 });

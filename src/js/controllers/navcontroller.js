@@ -1,8 +1,10 @@
+'use strict';
+
 myApp.controller('NavController', function($scope, $location){
 
     $scope.isActive = function (viewLocation) {
 				var tempPath = $location.path();
-				if(tempPath != '/userslist/new'){
+				if(tempPath !== '/new'){
 					tempPath = '/';
 				}
         return viewLocation === tempPath;

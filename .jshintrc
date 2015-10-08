@@ -12,7 +12,7 @@
 	"plusplus"			: false,		// true: Prohibit use of `++` & `--`
 	"quotmark"			: "single",	// Quotation mark consistency
 	"undef"					: true,			// true: Require all non-global variables to be declared (prevents global leaks)
-	"predef"				: ["document"],
+	"predef"				: ["myApp"],
 	"unused"				: false,		// true: Require all defined variables be used
 	"strict"				: true,			// true: Requires all functions run in ES5 Strict Mode
 	"trailing"			: true,			// true: Prohibit trailing whitespaces

@@ -33877,33 +33877,29 @@ var myApp = angular.module('myApp', ['ui.router','ngResource']);
 myApp.config(function($stateProvider, $urlRouterProvider) {
   //
   // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise('/userslist');
+  $urlRouterProvider.otherwise('list');
   //
   // Now set up the states
   $stateProvider
-	.state('userslist', {
-		url: '/userslist',
-		templateUrl: 'partials/userslist.html'
-	})
-	.state('userslist.list', {
+	.state('list', {
 		url: '/list',
 		template: '<user-list></user-list>',
 		controller: 'ListController'
 	})
 
-  .state('userslist.profile', {
+  .state('profile', {
 		url: '/profile/:userId',
 		template: '<user-profile></user-profile>',
 		controller: 'ProfileController'
 	})
 
-	.state('userslist.edit', {
+	.state('edit', {
 		url: '/edit/:userId',
 		template: '<user-edit></user-edit>',
 		controller: 'UpdateController'
 	})
 
-	.state('userslist.new', {
+	.state('new', {
 		url: '/new',
 		template: '<user-new></user-new>',
 		controller: 'CreateController'
@@ -33919,7 +33915,7 @@ myApp.controller('CreateController', function($scope, $http, $state, UserService
     UserService.addUser(
 			$scope.user
     ).then(function(result){
-      $state.go('userslist.list');
+      $state.go('list');
     }, function(error) {
       console.log(error);
     });
@@ -33937,20 +33933,22 @@ myApp.controller('ListController', function($scope, $http, $state, UserService){
   });
 
 	$scope.edit = function(id){
-		$state.go('userslist.edit', {userId: id});
+		$state.go('edit', {userId: id});
 	};
 
   $scope.disp = function(id){
-		$state.go('userslist.profile', {userId: id});
+		$state.go('profile', {userId: id});
 	};
 
 });
+
+'use strict';
 
 myApp.controller('NavController', function($scope, $location){
 
     $scope.isActive = function (viewLocation) {
 				var tempPath = $location.path();
-				if(tempPath != '/userslist/new'){
+				if(tempPath !== '/new'){
 					tempPath = '/';
 				}
         return viewLocation === tempPath;
@@ -33966,9 +33964,9 @@ myApp.controller('ProfileController', function($scope, $http, $stateParams, $sta
 
     angular.forEach($scope.users,function(value,index){
 
-      if(value._id == $stateParams.userId){
+      if(value._id === $stateParams.userId){
         $scope.user = value;
-      };
+      }
     });
 
   }, function(error) {
@@ -33981,7 +33979,7 @@ myApp.controller('ProfileController', function($scope, $http, $stateParams, $sta
       user: $stateParams.userId
 		}).then(function(result){
       alert('Successfully deleted user!');
-      $state.go('userslist.list');
+      $state.go('list');
     }, function(error) {
       console.log(error);
     });
@@ -33998,9 +33996,9 @@ myApp.controller('UpdateController', function($scope, $http, $stateParams, $stat
 
     angular.forEach($scope.users,function(value,index){
 
-      if(value._id == $stateParams.userId){
+      if(value._id === $stateParams.userId){
         $scope.user = value;
-      };
+      }
     });
 
   }, function(error) {
@@ -34014,7 +34012,7 @@ myApp.controller('UpdateController', function($scope, $http, $stateParams, $stat
       $scope.user
     ).then(function(result){
       alert('Success');
-      $state.go('userslist.list');
+      $state.go('list');
     }, function(error) {
       console.log(error);
     });
@@ -34023,36 +34021,44 @@ myApp.controller('UpdateController', function($scope, $http, $stateParams, $stat
 
 });
 
+'use strict';
+
 myApp.directive('userEdit', function($templateCache) {
     return {
         restrict: 'E',
-        template: $templateCache.get("edit.html"),
+        template: $templateCache.get('edit.html'),
         replace: true
-    }
+    };
 });
+
+'use strict';
 
 myApp.directive('userList', function($templateCache) {
     return {
         restrict: 'E',
-        template: $templateCache.get("list.html"),
+        template: $templateCache.get('list.html'),
         replace: true
-    }
+    };
 });
+
+'use strict';
 
 myApp.directive('userNew', function($templateCache) {
     return {
         restrict: 'E',
-        template: $templateCache.get("new.html"),
+        template: $templateCache.get('new.html'),
         replace: true
-    }
+    };
 });
 
-myApp.directive('userProfile', function() {
+'use strict';
+
+myApp.directive('userProfile', function($templateCache) {
     return {
         restrict: 'E',
-        template: $templateCache.get("profile.html"),
+        template: $templateCache.get('profile.html'),
         replace: true
-    }
+    };
 });
 
 'use strict';
@@ -34088,3 +34094,8 @@ myApp.service('UserService', function(UserFactory) {
 		deleteUser: deleteUser
   };
 });
+
+myApp.run(['$templateCache', function($templateCache) {$templateCache.put("edit.html","<div>\n	<h1>Edit User</h1>\n	<hr/>\n	<div class=\"topPadding\">\n		<div ng-controller=\"UpdateController\">\n			<form ng-submit=\"submitEdit()\" ng-controller=\"CreateController\">\n				<label>First Name:\n					<input type=\"text\" ng-model=\"user.firstName\" required></input>\n				</label>\n				<label>Last Name:\n					<input type=\"text\" ng-model=\"user.lastName\" required></input>\n				</label>\n				<label>Phone:\n					<input type=\"text\" ng-model=\"user.phone\" required></input>\n				</label>\n				<label>Email:\n					<input type=\"text\" ng-model=\"user.email\" disabled></input>\n				</label>\n				<input type=\"submit\" value=\"Submit\">\n			</form>\n		</div>\n	</div>\n</div>\n");
+$templateCache.put("list.html","<table class=\"table\">\n  <tr ng-repeat=\"user in users\">\n    <td>\n      {{user.firstName}} {{user.lastName}}\n      <button type=\"button\" class=\"rightFloat\" ng-click=\"edit(user._id);\">Edit</button>\n      <button type=\"button\" class=\"rightFloat\" ng-click=\"disp(user._id);\">View</button>\n    </td>\n  </tr>\n</table>\n");
+$templateCache.put("new.html","<div>\n	<h1>Sign Up</h1>\n	<hr/>\n	<div class=\"topPadding\">\n		<div ng-controller=\"CreateController\">\n			<form ng-submit=\"submit()\" ng-controller=\"CreateController\">\n				<label>First Name:\n					<input type=\"text\" ng-model=\"user.firstName\" required></input>\n				</label>\n				<label>Last Name:\n					<input type=\"text\" ng-model=\"user.lastName\" required></input>\n				</label>\n				<label>Phone:\n					<input type=\"text\" ng-model=\"user.phone\" required></input>\n				</label>\n				<label>Email:\n					<input type=\"email\" ng-model=\"user.email\" required></input>\n				</label>\n				<input type=\"submit\" value=\"Submit\">\n			</form>\n		</div>\n	</div>\n</div>\n");
+$templateCache.put("profile.html","<div>\n	<h1>User Profile</h1>\n	<hr/>\n	<div class=\"topPadding\">\n		<div ng-controller=\"ProfileController\">\n			<span class=\"rightFloat\">\n				<a ui-sref=\"edit({userId: user._id})\">Edit</a>\n				<a href=\"#\" ng-click=\"del(user.uId);\">Delete</a>\n			</span>\n			<p id=\"UserName\">Name: {{user.firstName }} {{user.lastName}}</p>\n			<p id=\"UserPhone\">Phone: {{user.phone}}</p>\n			<p id=\"UserEmail\">Email: {{user.email}}</p>\n		</div>\n	</div>\n</div>\n");}]);
