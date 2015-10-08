@@ -1,7 +1,9 @@
-myApp.directive('userList', function() {
+'use strict';
+
+myApp.directive('userList', function($templateCache) {
     return {
         restrict: 'E',
-        templateUrl: 'partials/list.html',
+        templateUrl: 'list.html',
         replace: true
-    }
+    };
 });

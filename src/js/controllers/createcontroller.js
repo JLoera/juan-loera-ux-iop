@@ -7,7 +7,7 @@ myApp.controller('CreateController', function($scope, $http, $state, UserService
     UserService.addUser(
 			$scope.user
     ).then(function(result){
-      $state.go('userslist.list');
+      $state.go('list');
     }, function(error) {
       console.log(error);
     });

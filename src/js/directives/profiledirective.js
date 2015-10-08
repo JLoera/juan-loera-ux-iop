@@ -1,7 +1,9 @@
-myApp.directive('userProfile', function() {
+'use strict';
+
+myApp.directive('userProfile', function($templateCache) {
     return {
         restrict: 'E',
-        templateUrl: 'partials/profile.html',
+        templateUrl: 'profile.html',
         replace: true
-    }
+    };
 });

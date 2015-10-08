@@ -1,7 +1,9 @@
-myApp.directive('userEdit', function() {
+'use strict';
+
+myApp.directive('userEdit', function($templateCache) {
     return {
         restrict: 'E',
-        templateUrl: 'partials/edit.html',
+        templateUrl: 'edit.html',
         replace: true
-    }
+    };
 });

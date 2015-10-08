@@ -7,9 +7,9 @@ myApp.controller('UpdateController', function($scope, $http, $stateParams, $stat
 
     angular.forEach($scope.users,function(value,index){
 
-      if(value._id == $stateParams.userId){
+      if(value._id === $stateParams.userId){
         $scope.user = value;
-      };
+      }
     });
 
   }, function(error) {
@@ -23,7 +23,7 @@ myApp.controller('UpdateController', function($scope, $http, $stateParams, $stat
       $scope.user
     ).then(function(result){
       alert('Success');
-      $state.go('userslist.list');
+      $state.go('list');
     }, function(error) {
       console.log(error);
     });

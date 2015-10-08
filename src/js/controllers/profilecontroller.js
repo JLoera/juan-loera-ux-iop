@@ -7,9 +7,9 @@ myApp.controller('ProfileController', function($scope, $http, $stateParams, $sta
 
     angular.forEach($scope.users,function(value,index){
 
-      if(value._id == $stateParams.userId){
+      if(value._id === $stateParams.userId){
         $scope.user = value;
-      };
+      }
     });
 
   }, function(error) {
@@ -22,7 +22,7 @@ myApp.controller('ProfileController', function($scope, $http, $stateParams, $sta
       user: $stateParams.userId
 		}).then(function(result){
       alert('Successfully deleted user!');
-      $state.go('userslist.list');
+      $state.go('list');
     }, function(error) {
       console.log(error);
     });
