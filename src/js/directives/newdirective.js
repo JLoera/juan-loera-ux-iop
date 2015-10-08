@@ -1,7 +1,7 @@
-myApp.directive('userNew', function() {
+myApp.directive('userNew', function($templateCache) {
     return {
         restrict: 'E',
-        templateUrl: 'partials/new.html',
+        template: $templateCache.get("new.html"),
         replace: true
     }
 });

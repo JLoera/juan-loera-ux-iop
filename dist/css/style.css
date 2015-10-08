@@ -1,0 +1,36 @@
+html, body {
+  font-family: sans-serif;
+  color: #000080;
+  padding: 0px 25px; }
+
+main {
+  padding: 25px;
+  width: 93.75%;
+  margin: auto; }
+
+.leftPadding {
+  padding-left: 25px; }
+
+.rightPadding {
+  padding-right: 25px; }
+
+.topPadding {
+  padding-top: 25px; }
+
+.emailPadding {
+  padding-top: 10px; }
+
+.rightFloat {
+  float: right; }
+
+label {
+  width: 100px;
+  display: block;
+  clear: both; }
+
+footer {
+  padding: 10px 0px;
+  background-color: #f0f0f0; }
+
+footer p {
+  padding-left: 25px; }

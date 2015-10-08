@@ -1,7 +1,7 @@
-myApp.directive('userEdit', function() {
+myApp.directive('userEdit', function($templateCache) {
     return {
         restrict: 'E',
-        templateUrl: 'partials/edit.html',
+        template: $templateCache.get("edit.html"),
         replace: true
     }
 });

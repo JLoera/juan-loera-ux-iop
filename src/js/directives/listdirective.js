@@ -1,7 +1,7 @@
-myApp.directive('userList', function() {
+myApp.directive('userList', function($templateCache) {
     return {
         restrict: 'E',
-        templateUrl: 'partials/list.html',
+        template: $templateCache.get("list.html"),
         replace: true
     }
 });

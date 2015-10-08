@@ -1,7 +1,7 @@
 myApp.directive('userProfile', function() {
     return {
         restrict: 'E',
-        templateUrl: 'partials/profile.html',
+        template: $templateCache.get("profile.html"),
         replace: true
     }
 });
