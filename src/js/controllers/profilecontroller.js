@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('ProfileController', function($scope, $http, $stateParams, $state, UserService){
+myApp.controller('ProfileController', function($scope, $http, $stateParams, $state, toaster, UserService){
 
 	UserService.getUsers().then(function(result){
     $scope.users = result;
@@ -21,7 +21,7 @@ myApp.controller('ProfileController', function($scope, $http, $stateParams, $sta
 		UserService.deleteUser({
       user: $stateParams.userId
 		}).then(function(result){
-      alert('Successfully deleted user!');
+      toaster.pop('success', 'Deleted!', 'User deleted');
       $state.go('list');
     }, function(error) {
       console.log(error);

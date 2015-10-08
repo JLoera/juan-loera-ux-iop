@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('UpdateController', function($scope, $http, $stateParams, $state, UserService){
+myApp.controller('UpdateController', function($scope, $http, $stateParams, $state, toaster, UserService){
 
   UserService.getUsers().then(function(result){
     $scope.users = result;
@@ -22,7 +22,7 @@ myApp.controller('UpdateController', function($scope, $http, $stateParams, $stat
       user: $stateParams.userId},
       $scope.user
     ).then(function(result){
-      alert('Success');
+      toaster.pop('success', 'Updated!', 'User properties updated');
       $state.go('list');
     }, function(error) {
       console.log(error);
