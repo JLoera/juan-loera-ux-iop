@@ -3,7 +3,7 @@
 myApp.directive('userEdit', function($templateCache) {
     return {
         restrict: 'E',
-        template: $templateCache.get('edit.html'),
+        templateUrl: 'edit.html',
         replace: true
     };
 });

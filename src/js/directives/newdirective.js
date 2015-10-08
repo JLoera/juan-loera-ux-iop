@@ -3,7 +3,7 @@
 myApp.directive('userNew', function($templateCache) {
     return {
         restrict: 'E',
-        template: $templateCache.get('new.html'),
+        templateUrl: 'new.html',
         replace: true
     };
 });

@@ -3,7 +3,7 @@
 myApp.directive('userProfile', function($templateCache) {
     return {
         restrict: 'E',
-        template: $templateCache.get('profile.html'),
+        templateUrl: 'profile.html',
         replace: true
     };
 });

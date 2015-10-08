@@ -34026,7 +34026,7 @@ myApp.controller('UpdateController', function($scope, $http, $stateParams, $stat
 myApp.directive('userEdit', function($templateCache) {
     return {
         restrict: 'E',
-        template: $templateCache.get('edit.html'),
+        templateUrl: 'edit.html',
         replace: true
     };
 });
@@ -34036,7 +34036,7 @@ myApp.directive('userEdit', function($templateCache) {
 myApp.directive('userList', function($templateCache) {
     return {
         restrict: 'E',
-        template: $templateCache.get('list.html'),
+        templateUrl: 'list.html',
         replace: true
     };
 });
@@ -34046,7 +34046,7 @@ myApp.directive('userList', function($templateCache) {
 myApp.directive('userNew', function($templateCache) {
     return {
         restrict: 'E',
-        template: $templateCache.get('new.html'),
+        templateUrl: 'new.html',
         replace: true
     };
 });
@@ -34056,7 +34056,7 @@ myApp.directive('userNew', function($templateCache) {
 myApp.directive('userProfile', function($templateCache) {
     return {
         restrict: 'E',
-        template: $templateCache.get('profile.html'),
+        templateUrl: 'profile.html',
         replace: true
     };
 });
