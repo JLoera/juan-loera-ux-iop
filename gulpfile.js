@@ -22,7 +22,7 @@ gulp.task('copy-toastercss', ['clean'], function(){
 });
 
 gulp.task('copy-bootstrap', ['copy-toastercss'], function(){
-  return gulp.src('./src/sass/bootstrap.css')
+  return gulp.src('./src/css/bootstrap.css')
     .pipe(gulp.dest('./dist/css/'))
 });
 
