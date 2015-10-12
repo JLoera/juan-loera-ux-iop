@@ -22,7 +22,7 @@ gulp.task('copy-toastercss', ['clean'], function(){
 });
 
 gulp.task('copy-bootstrap', ['copy-toastercss'], function(){
-  return gulp.src('./src/css/bootstrap.css')
+  return gulp.src('./node_modules/bootstrap/dist/css/bootstrap.css')
     .pipe(gulp.dest('./dist/css/'))
 });
 
@@ -70,8 +70,13 @@ gulp.task('html',['scripts'], function () {
     .pipe(connect.reload());
 });
 
-gulp.task('watch', function () {
-  gulp.watch(['./src/**/*'], ['clean','copy-index', 'copy-toastercss', 'copy-bootstrap', 'sass', 'js-hint', 'scripts', 'templ-cache', 'html']);
+gulp.task('clean-temp',['html'], function(){
+  return gulp.src(['./temp'], {read: false})
+      .pipe(clean());
 });
 
-gulp.task('default', ['connect', 'watch', 'clean','copy-index', 'copy-toastercss', 'copy-bootstrap', 'sass', 'js-hint', 'scripts', 'templ-cache', 'html']);
+gulp.task('watch', function () {
+  gulp.watch(['./src/**/*'], ['clean','copy-index', 'copy-toastercss', 'copy-bootstrap', 'sass', 'js-hint', 'scripts', 'templ-cache', 'html', 'clean-temp']);
+});
+
+gulp.task('default', ['connect', 'watch', 'clean','copy-index', 'copy-toastercss', 'copy-bootstrap', 'sass', 'js-hint', 'scripts', 'templ-cache', 'html', 'clean-temp']);

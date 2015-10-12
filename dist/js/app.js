@@ -34450,6 +34450,40 @@ myApp.controller('UpdateController', function($scope, $http, $stateParams, $stat
 
 'use strict';
 
+myApp.factory('UserFactory',function($resource){
+	return $resource('http://localhost:24149/users/:user',
+  {
+    user: '@user'
+  },
+  {
+    update: {method: 'PUT'}
+  });
+});
+
+myApp.service('UserService', function(UserFactory) {
+  function getUsers() {
+    return UserFactory.query().$promise;
+  }
+	function addUser(data){
+		return UserFactory.save(data).$promise;
+	}
+  function updateUser(id, data){
+		return UserFactory.update(id, data).$promise;
+	}
+	function deleteUser(id){
+		return UserFactory.delete(id).$promise;
+	}
+
+  return {
+    getUsers: getUsers,
+		addUser: addUser,
+    updateUser: updateUser,
+		deleteUser: deleteUser
+  };
+});
+
+'use strict';
+
 myApp.directive('userEdit', function($templateCache) {
     return {
         restrict: 'E',
@@ -34486,40 +34520,6 @@ myApp.directive('userProfile', function($templateCache) {
         templateUrl: 'profile.html',
         replace: true
     };
-});
-
-'use strict';
-
-myApp.factory('UserFactory',function($resource){
-	return $resource('http://localhost:24149/users/:user',
-  {
-    user: '@user'
-  },
-  {
-    update: {method: 'PUT'}
-  });
-});
-
-myApp.service('UserService', function(UserFactory) {
-  function getUsers() {
-    return UserFactory.query().$promise;
-  }
-	function addUser(data){
-		return UserFactory.save(data).$promise;
-	}
-  function updateUser(id, data){
-		return UserFactory.update(id, data).$promise;
-	}
-	function deleteUser(id){
-		return UserFactory.delete(id).$promise;
-	}
-
-  return {
-    getUsers: getUsers,
-		addUser: addUser,
-    updateUser: updateUser,
-		deleteUser: deleteUser
-  };
 });
 
 myApp.run(['$templateCache', function($templateCache) {$templateCache.put("edit.html","<div>\n	<h1>Edit User</h1>\n	<hr/>\n	<div class=\"topPadding\">\n		<div ng-controller=\"UpdateController\">\n			<form ng-submit=\"submitEdit()\" ng-controller=\"CreateController\">\n				<label>First Name:\n					<input type=\"text\" ng-model=\"user.firstName\" required></input>\n				</label>\n				<label>Last Name:\n					<input type=\"text\" ng-model=\"user.lastName\" required></input>\n				</label>\n				<label>Phone:\n					<input type=\"text\" ng-model=\"user.phone\" required></input>\n				</label>\n				<label>Email:\n					<input type=\"text\" ng-model=\"user.email\" disabled></input>\n				</label>\n				<input type=\"submit\" value=\"Submit\">\n			</form>\n		</div>\n	</div>\n</div>\n");
