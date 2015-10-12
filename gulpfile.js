@@ -7,7 +7,7 @@ var templateCache = require('gulp-angular-templatecache');
 var concat = require('gulp-concat');
 
 gulp.task('clean', function () {
-    return gulp.src(['./dist/**/*', './temp/'], {read: false})
+    return gulp.src(['./dist/*', './temp/*'], {read: false})
         .pipe(clean());
 });
 
@@ -16,7 +16,7 @@ gulp.task('copy-index', ['clean'], function(){
     .pipe(gulp.dest('./dist/'))
 });
 
-gulp.task('copy-toastercss', ['copy-index'], function(){
+gulp.task('copy-toastercss', ['clean'], function(){
   return gulp.src('./node_modules/angularjs-toaster/toaster.css')
     .pipe(gulp.dest('./dist/css/'))
 });
@@ -32,13 +32,13 @@ gulp.task('sass',['copy-bootstrap'],function(){
   .pipe(gulp.dest('./dist/css/'));
 });
 
-gulp.task('js-hint',['sass'], function(){
+gulp.task('js-hint', function(){
   return gulp.src('./src/js/**/*.js')
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('scripts',['js-hint'], function() {
+gulp.task('scripts',['templ-cache'], function() {
   return gulp.src([
     './node_modules/angular/angular.js',
     './node_modules/angular-resource/angular-resource.js',
@@ -51,7 +51,7 @@ gulp.task('scripts',['js-hint'], function() {
     .pipe(gulp.dest('./dist/js/'));
 });
 
-gulp.task('templ-cache', function () {
+gulp.task('templ-cache', ['clean'], function () {
   return gulp.src('./src/partials/*.html')
     .pipe(templateCache('templates.js', {templateHeader: 'myApp.run([\'$templateCache\', function($templateCache) {'}))
     .pipe(gulp.dest('./temp'));
@@ -66,7 +66,7 @@ gulp.task('connect', function() {
 });
 
 gulp.task('html',['scripts'], function () {
-  gulp.src('./dist/*')
+  gulp.src('./dist/**/*')
     .pipe(connect.reload());
 });
 
@@ -74,4 +74,4 @@ gulp.task('watch', function () {
   gulp.watch(['./src/**/*'], ['clean','copy-index', 'copy-toastercss', 'copy-bootstrap', 'sass', 'js-hint', 'scripts', 'templ-cache', 'html']);
 });
 
-gulp.task('default', ['connect', 'sass', 'watch', 'js-hint','clean','copy-index', 'copy-toastercss', 'copy-bootstrap', 'scripts', 'templ-cache']);
+gulp.task('default', ['connect', 'watch', 'clean','copy-index', 'copy-toastercss', 'copy-bootstrap', 'sass', 'js-hint', 'scripts', 'templ-cache', 'html']);
