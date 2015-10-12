@@ -8,6 +8,21 @@ main {
   width: 93.75%;
   margin: auto; }
 
+.leftPadding {
+  padding-left: 25px; }
+
+.rightPadding {
+  padding-right: 25px; }
+
+.topPadding {
+  padding-top: 25px; }
+
+.emailPadding {
+  padding-top: 10px; }
+
+.rightFloat {
+  float: right; }
+
 label {
   width: 100px;
   display: block;
