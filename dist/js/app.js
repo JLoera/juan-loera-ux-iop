@@ -34300,6 +34300,8 @@ angular.module('ui.router.state')
 
 var myApp = angular.module('myApp', ['ui.router','ngResource', 'toaster']);
 
+'use strict';
+
 myApp.config(function($stateProvider, $urlRouterProvider) {
   //
   // For any unmatched url, redirect to /state1
