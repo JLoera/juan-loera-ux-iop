@@ -7,10 +7,9 @@ var templateCache = require('gulp-angular-templatecache');
 var concat = require('gulp-concat');
 var Server = require('karma').Server;
 
-gulp.task('unit-test', function (done) {
+gulp.task('unit-test', ['clean-temp'], function (done) {
   new Server({
-    configFile: __dirname + '/test/karma.conf.js',
-    singleRun: true
+    configFile: __dirname + '/test/karma.conf.js'
   }, done).start();
 });
 

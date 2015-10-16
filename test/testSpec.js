@@ -1,37 +1,29 @@
+'use strict';
 
-describe("List Controller", function(){
-  var scope, controller, $httpBackend;
+describe('List Controller', function(){
 
-  beforeEach(function(){
-    module('myApp');
+  var scope, controller, $httpBackend, ListController, UserService;
+  beforeEach(module('myApp'));
 
-    inject(function($rootScope, $controller, $injector) {
-      scope         = $rootScope.$new();
-      controller    = $controller("ListController", { $scope: scope });
+  beforeEach(inject(function($rootScope, $controller){
+    scope = $rootScope.$new();
+    controller = $controller('ListController', {$scope: scope});
+  }));
 
-      $httpBackend  = $injector.get('$httpBackend');
-      $httpBackend.when('query', '/users').respond([
-        { id: 1, name: "Entry 1" },
-        { id: 2, name: "Entry 2" }
-      ]);
-    });
-  });
+  beforeEach(inject(function(_$httpBackend_, _UserService_){
+    $httpBackend = _$httpBackend_;
+    UserService = _UserService_;
+  }));
 
   afterEach(function() {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  it("initially has no entries", function(){
-    expect(scope.users.length).toBe(0);
-  });
-
-  it("loads entries with http", function(){
-    $httpBackend.expectGET('/users');
-    controller.load(function(){
-      expect(scope.users.length).toBe(2);
-    });
+  it(' should have one user', function(){
+    $httpBackend.expectGET('http://localhost:24149/users').respond(200,[{firstName: 'John', lastName: 'Loera', email: 'juan.loera@banno.com', phone: '956-555-5555'}]);
     $httpBackend.flush();
-  });
 
+    expect(scope.users.length).toBe(1);
+  });
 });

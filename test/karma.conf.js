@@ -15,9 +15,17 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/js/**/*.js',
-      'node_modules/angular-mocks/angular-mocks.js',
-      'test/testSpec.js'
+      '../node_modules/angular/angular.js',
+      '../node_modules/angularjs-toaster/toaster.js',
+      '../node_modules/angular-resource/angular-resource.js',
+      '../node_modules/angular-ui-router/build/angular-ui-router.js',
+      '../node_modules/angular-mocks/angular-mocks.js',
+      '../src/js/module.js',
+      '../src/js/routes.js',
+      '../src/js/controllers/*.js',
+      '../src/js/directives/*.js',
+      '../src/js/services/*.js',
+      '../test/testSpec.js'
     ],
 
 
