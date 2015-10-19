@@ -25,7 +25,12 @@ module.exports = function(config) {
       '../src/js/controllers/*.js',
       '../src/js/directives/*.js',
       '../src/js/services/*.js',
-      '../test/testSpec.js'
+      '../src/partials/*.html',
+      '../test/listserviceSpec.js',
+      '../test/createserviceSpec.js',
+      '../test/updateserviceSpec.js',
+      '../test/deleteserviceSpec.js',
+      '../test/editdirectiveSpec.js'
     ],
 
 
@@ -37,8 +42,18 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      '../src/partials/*.html': ['ng-html2js']
     },
 
+    ngHtml2JsPreprocessor: {
+      stripPrefix: '../src/partials'
+    },
+
+    plugins: [
+        'karma-jasmine',
+        'karma-phantomjs-launcher',
+        'karma-ng-html2js-preprocessor'
+    ],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
