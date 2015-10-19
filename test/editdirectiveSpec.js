@@ -5,7 +5,7 @@ describe('Unit testing edit directive ', function() {
 
   // Load the myApp module, which contains the directive
   beforeEach(module('myApp'));
-  beforeEach(module('src/partials/edit.html'));
+  //beforeEach(module('templates'));
 
   // Store references to $rootScope and $compile
   // so they are available to all tests in this describe block
@@ -15,7 +15,7 @@ describe('Unit testing edit directive ', function() {
     $rootScope = _$rootScope_;
     $httpBackend = _$httpBackend_;
 
-    $httpBackend.whenGET('edit.html').respond("");
+    $httpBackend.expectGET('edit.html').respond("");
   }));
 
   it('Replaces the element with the appropriate content', function() {

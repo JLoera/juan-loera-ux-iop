@@ -46,7 +46,11 @@ module.exports = function(config) {
     },
 
     ngHtml2JsPreprocessor: {
-      stripPrefix: '../src/partials'
+      moduleName: 'templates',
+      cacheIdFromPath: function(filepath) {
+        return 'src/partials/' + filepath;
+      },
+      stripPrefix: 'src/partials'
     },
 
     plugins: [
