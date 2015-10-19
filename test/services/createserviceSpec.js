@@ -27,6 +27,6 @@ describe('Create Controller', function(){
 
     $httpBackend.flush();
 
-    expect(1).toBe(1);
+    expect(typeof(UserService.addUser)).toBe('function');
   });
 });

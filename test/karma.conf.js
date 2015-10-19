@@ -20,17 +20,28 @@ module.exports = function(config) {
       '../node_modules/angular-resource/angular-resource.js',
       '../node_modules/angular-ui-router/build/angular-ui-router.js',
       '../node_modules/angular-mocks/angular-mocks.js',
+
       '../src/js/module.js',
       '../src/js/routes.js',
       '../src/js/controllers/*.js',
       '../src/js/directives/*.js',
       '../src/js/services/*.js',
-      '../src/partials/*.html',
-      '../test/listserviceSpec.js',
-      '../test/createserviceSpec.js',
-      '../test/updateserviceSpec.js',
-      '../test/deleteserviceSpec.js',
-      '../test/editdirectiveSpec.js'
+      '../temp/templates.js',
+
+      '../test/services/listserviceSpec.js',
+      '../test/services/createserviceSpec.js',
+      '../test/services/updateserviceSpec.js',
+      '../test/services/deleteserviceSpec.js',
+
+      '../test/directives/editdirectiveSpec.js',
+      '../test/directives/profiledirectiveSpec.js',
+      '../test/directives/newdirectiveSpec.js',
+      '../test/directives/listdirectiveSpec.js',
+
+      '../test/controllers/updatecontrollerSpec.js',
+      '../test/controllers/profilecontrollerSpec.js',
+      '../test/controllers/createcontrollerSpec.js',
+      '../test/controllers/listcontrollerSpec.js'
     ],
 
 
@@ -42,22 +53,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '../src/partials/*.html': ['ng-html2js']
     },
-
-    ngHtml2JsPreprocessor: {
-      moduleName: 'templates',
-      cacheIdFromPath: function(filepath) {
-        return 'src/partials/' + filepath;
-      },
-      stripPrefix: 'src/partials'
-    },
-
-    plugins: [
-        'karma-jasmine',
-        'karma-phantomjs-launcher',
-        'karma-ng-html2js-preprocessor'
-    ],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
