@@ -28,20 +28,20 @@ module.exports = function(config) {
       '../src/js/services/*.js',
       '../temp/templates.js',
 
-      '../test/services/listserviceSpec.js',
-      '../test/services/createserviceSpec.js',
-      '../test/services/updateserviceSpec.js',
-      '../test/services/deleteserviceSpec.js',
+      '../test/unit/services/listserviceSpec.js',
+      '../test/unit/services/createserviceSpec.js',
+      '../test/unit/services/updateserviceSpec.js',
+      '../test/unit/services/deleteserviceSpec.js',
 
-      '../test/directives/editdirectiveSpec.js',
-      '../test/directives/profiledirectiveSpec.js',
-      '../test/directives/newdirectiveSpec.js',
-      '../test/directives/listdirectiveSpec.js',
+      '../test/unit/directives/editdirectiveSpec.js',
+      '../test/unit/directives/profiledirectiveSpec.js',
+      '../test/unit/directives/newdirectiveSpec.js',
+      '../test/unit/directives/listdirectiveSpec.js',
 
-      '../test/controllers/updatecontrollerSpec.js',
-      '../test/controllers/profilecontrollerSpec.js',
-      '../test/controllers/createcontrollerSpec.js',
-      '../test/controllers/listcontrollerSpec.js'
+      '../test/unit/controllers/updatecontrollerSpec.js',
+      '../test/unit/controllers/profilecontrollerSpec.js',
+      '../test/unit/controllers/createcontrollerSpec.js',
+      '../test/unit/controllers/listcontrollerSpec.js'
     ],
 
 
