@@ -5,6 +5,13 @@ var jshint = require('gulp-jshint');
 var clean = require('gulp-clean');
 var templateCache = require('gulp-angular-templatecache');
 var concat = require('gulp-concat');
+var Server = require('karma').Server;
+
+gulp.task('unit-test', ['html'], function (done) {
+  new Server({
+    configFile: __dirname + '/test/karma.conf.js'
+  }, done).start();
+});
 
 gulp.task('clean', function () {
     return gulp.src(['./dist/*', './temp/*'], {read: false})
@@ -70,13 +77,13 @@ gulp.task('html',['scripts'], function () {
     .pipe(connect.reload());
 });
 
-gulp.task('clean-temp',['html'], function(){
+/*gulp.task('clean-temp',['html'], function(){
   return gulp.src(['./temp'], {read: false})
       .pipe(clean());
-});
+});*/
 
 gulp.task('watch', function () {
-  gulp.watch(['./src/**/*'], ['clean','copy-index', 'copy-toastercss', 'copy-bootstrap', 'sass', 'js-hint', 'scripts', 'templ-cache', 'html', 'clean-temp']);
+  gulp.watch(['./src/**/*'], ['clean','copy-index', 'copy-toastercss', 'copy-bootstrap', 'sass', 'js-hint', 'scripts', 'templ-cache', 'html', 'unit-test']);
 });
 
-gulp.task('default', ['connect', 'watch', 'clean','copy-index', 'copy-toastercss', 'copy-bootstrap', 'sass', 'js-hint', 'scripts', 'templ-cache', 'html', 'clean-temp']);
+gulp.task('default', ['connect', 'watch', 'clean','copy-index', 'copy-toastercss', 'copy-bootstrap', 'sass', 'js-hint', 'scripts', 'templ-cache', 'html', 'unit-test']);
