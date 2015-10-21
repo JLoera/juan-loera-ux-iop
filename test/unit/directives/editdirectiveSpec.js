@@ -19,7 +19,7 @@ describe('Unit testing edit directive ', function() {
     $httpBackend.expectGET('http://localhost:24149/users').respond("");
     $httpBackend.expectGET('edit.html').respond("");
     // Compile a piece of HTML containing the directive
-    var element = $compile("<div><user-edit></user-edit></div>")($rootScope);
+    var element = $compile("<user-edit></user-edit>")($rootScope);
     // fire all the watches, so the scope expression {{1 + 1}} will be evaluated
     $rootScope.$digest();
     // Check that the compiled element contains the templated content
